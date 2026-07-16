@@ -5,6 +5,7 @@
   "type": "module",
   "main": "dist-electron/main.js",
   "description": "Local-first knowledge management desktop app for Windows and macOS",
+  "author": "Knowledge Contributors",
   "scripts": {
     "dev": "concurrently -k \"vite --host 0.0.0.0\" \"wait-on tcp:5173 && electron .\"",
     "dev:web": "vite --host 0.0.0.0",
@@ -13,7 +14,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview --host 0.0.0.0",
-    "package": "npm run build && electron-builder"
+    "package": "npm run build && electron-builder --publish never"
   },
   "dependencies": {
     "@xyflow/react": "^12.8.5",
@@ -38,6 +39,7 @@
   "build": {
     "appId": "com.knowledge.desktop",
     "productName": "Knowledge",
+    "directories": { "output": "release" },
     "files": ["dist/**/*", "dist-electron/**/*", "electron/preload.cjs", "package.json"],
     "mac": { "target": ["dmg", "zip"], "category": "public.app-category.productivity" },
     "win": { "target": ["nsis", "portable"] }
