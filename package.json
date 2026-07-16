@@ -1,0 +1,45 @@
+{
+  "name": "knowledge-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "description": "Local-first knowledge management desktop app for Windows and macOS",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 0.0.0.0\" \"wait-on tcp:5173 && electron .\"",
+    "dev:web": "vite --host 0.0.0.0",
+    "build": "npm run typecheck && vite build && tsc -p electron/tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "preview": "vite preview --host 0.0.0.0",
+    "package": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.8.5",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.knowledge.desktop",
+    "productName": "Knowledge",
+    "files": ["dist/**/*", "dist-electron/**/*", "electron/preload.cjs", "package.json"],
+    "mac": { "target": ["dmg", "zip"], "category": "public.app-category.productivity" },
+    "win": { "target": ["nsis", "portable"] }
+  }
+}

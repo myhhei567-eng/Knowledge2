@@ -1,0 +1,13 @@
+node_modules/
+dist/
+dist-electron/
+release/
+.vite/
+coverage/
+*.log
+.DS_Store
+.knowledge/
+workspace/
+attachments/
+*.local
+*.orig
